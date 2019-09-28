@@ -14,18 +14,22 @@ function destroyBoxes() {
   boxes.innerHTML = "";
   input.value = "";
 }
-renderButton.addEventListener("click", () => createBoxes(inputValue));
+renderButton.addEventListener("click", () => {
+  boxes.insertAdjacentHTML("beforeend", `${createBoxes(inputValue)}`);
+});
 
 function createBoxes(amount) {
   const width = 30;
   const height = 30;
   let step = 10;
+  let array = [];
   for (let i = 1; i <= amount; i++) {
     const div = document.createElement("div");
     div.style.width = width + i * step + "px";
     div.style.height = height + i * step + "px";
     div.style.background =
       "#" + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
-    boxes.append(div);
+    array.push(div.outerHTML);
   }
+  return array.join("");
 }

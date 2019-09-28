@@ -5,5 +5,5 @@ input.addEventListener("input", currentName);
 
 function currentName(event) {
   output.textContent = event.currentTarget.value;
-  if (input.value.length === 0) output.textContent = "незнакомец";
+  if (!input.value.length) output.textContent = "незнакомец";
 }
